@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Drive</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app-container">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="logo">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Microsoft_Azure.svg" alt="Azure Logo" width="36">
+        <span>Azure Drive</span>
+      </div>
+      <div class="search-bar">
+        <span class="material-symbols-outlined">search</span>
+        <input type="text" placeholder="Search in Drive">
+        <span class="material-symbols-outlined">tune</span>
+      </div>
+      <div class="topbar-actions">
+        <div class="avatar">
+          <span class="material-symbols-outlined">account_circle</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <div class="main-body">
+
+      <!-- SIDEBAR -->
+      <nav class="sidebar">
+        <div class="sidebar-actions">
+          <button class="new-btn" onclick="document.getElementById('fileInput').click()">
+            <span class="material-symbols-outlined">add</span>
+            New File
+          </button>
+          <input type="file" id="fileInput" hidden>
+
+          <button class="new-btn category-btn" onclick="createCategory()">
+            <span class="material-symbols-outlined">create_new_folder</span>
+            New Category
+          </button>
+        </div>
+
+        <ul class="nav-links">
+          <li class="active"><span class="material-symbols-outlined">hard_drive</span> My Drive</li>
+        </ul>
+      </nav>
+
+      <!-- CONTENT AREA -->
+      <main class="content-area">
+        <div class="content-header">
+          <h2 id="breadcrumb">
+            <span class="breadcrumb-item" onclick="navigate('')">My Drive</span>
+          </h2>
+          <div class="view-options">
+            <span class="material-symbols-outlined">view_list</span>
+            <span class="material-symbols-outlined">info</span>
+          </div>
+        </div>
+
+        <div id="dropArea" class="drop-area">
+          <div class="drop-content">
+            <span class="material-symbols-outlined" style="font-size: 48px; color: #1a73e8;">cloud_upload</span>
+            <p>Drag and drop files here</p>
+            <p class="sub-text">or use the New File button</p>
+          </div>
+        </div>
+
+        <div class="files-container">
+          <h3>Categories & Files</h3>
+          <div id="fileList" class="file-grid">
+            <!-- Files will be loaded here dynamically -->
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- PREVIEW MODAL -->
+  <div id="previewModal">
+    <span class="material-symbols-outlined close-preview" onclick="closePreview()">close</span>
+    <div id="previewContent"></div>
+  </div>
+
+  <!-- INPUT MODAL -->
+  <div id="inputModal" class="custom-modal">
+    <div class="modal-content">
+      <h3 id="inputModalTitle">New folder</h3>
+      <input type="text" id="inputModalInput" placeholder="Untitled folder" autocomplete="off">
+      <div class="modal-actions">
+        <button class="btn-text" onclick="closeInputModal()">Cancel</button>
+        <button class="btn-primary" id="inputModalSubmit">Create</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONFIRM MODAL -->
+  <div id="confirmModal" class="custom-modal">
+    <div class="modal-content">
+      <h3 id="confirmModalTitle">Confirm Delete</h3>
+      <p id="confirmModalText" style="margin-bottom: 24px; color: #444746; font-size: 14px; margin-top: 0;">Are you
+        sure?</p>
+      <div class="modal-actions">
+        <button class="btn-text" onclick="closeConfirmModal()">Cancel</button>
+        <button class="btn-danger" id="confirmModalSubmit">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPLOAD STATUS TOAST -->
+  <div id="uploadToast" class="upload-toast">
+    <div class="toast-header">
+      <span id="toastTitle">Uploading 1 item</span>
+      <div class="toast-actions">
+        <span class="material-symbols-outlined" onclick="closeToast()">close</span>
+      </div>
+    </div>
+    <div class="toast-body" id="toastItems">
+      <!-- Upload items go here -->
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
